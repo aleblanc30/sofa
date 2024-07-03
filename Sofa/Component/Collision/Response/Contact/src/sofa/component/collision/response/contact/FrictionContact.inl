@@ -32,8 +32,8 @@
 namespace sofa::component::collision::response::contact
 {
 
-template < class TCollisionModel1, class TCollisionModel2, class ResponseDataTypes  >
-FrictionContact<TCollisionModel1,TCollisionModel2,ResponseDataTypes>::FrictionContact()
+template <class TCollisionModel1, class TCollisionModel2, class ResponseDataTypes >
+FrictionContact<TCollisionModel1, TCollisionModel2, ResponseDataTypes>::FrictionContact()
     : FrictionContact(nullptr, nullptr, nullptr)
 {
 }
@@ -43,6 +43,7 @@ template < class TCollisionModel1, class TCollisionModel2, class ResponseDataTyp
 FrictionContact<TCollisionModel1,TCollisionModel2,ResponseDataTypes>::FrictionContact(CollisionModel1* model1, CollisionModel2* model2, Intersection* intersectionMethod)
     : BaseUnilateralContactResponse<TCollisionModel1, TCollisionModel2, constraint::lagrangian::model::UnilateralLagrangianContactParameters, ResponseDataTypes>(model1,model2,intersectionMethod)
       , d_mu (initData(&d_mu, 0.8, "mu", "Friction coefficient (0 for frictionless contacts)"))
+      , d_drag (initData(&d_drag, 0., "drag", "viscosity coefficient (0 for frictionless contacts)"))
 {
 
 }

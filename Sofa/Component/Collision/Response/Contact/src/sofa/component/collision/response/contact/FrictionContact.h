@@ -50,6 +50,7 @@ class FrictionContact : public BaseUnilateralContactResponse<TCollisionModel1,  
     typedef core::behavior::MechanicalState<DataTypes2> MechanicalState2;
 
     Data<double> d_mu; ///< friction parameter
+    Data<double> d_drag; ///< viscosity coefficient
 
     FrictionContact();
     FrictionContact(CollisionModel1* model1, CollisionModel2* model2, Intersection* intersectionMethod);

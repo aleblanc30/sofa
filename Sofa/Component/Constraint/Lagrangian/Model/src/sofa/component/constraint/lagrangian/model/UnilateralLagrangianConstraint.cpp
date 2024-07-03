@@ -92,6 +92,8 @@ void UnilateralConstraintResolutionWithFriction::resolution(int line, SReal** /*
         const SReal factor = fN / normFt;
         force[line+1] *= factor;
         force[line+2] *= factor;
+        force[line+1] -= _drag*d[line+1];
+        force[line+2] -= _drag*d[line+2];
     }
 }
 
@@ -110,6 +112,5 @@ void UnilateralConstraintResolutionWithFriction::store(int line, SReal* force, b
         _active = nullptr; // Won't be used in the haptic thread
     }
 }
-
 
 } //namespace sofa::component::constraint::lagrangian::model
