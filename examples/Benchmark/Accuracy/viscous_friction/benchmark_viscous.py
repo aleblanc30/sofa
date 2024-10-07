@@ -38,8 +38,7 @@ def createScene(rootNode, dt=0.01, m=1, alpha=1, g=1, L=100, mu=0):
     rootNode.addObject('GenericConstraintSolver', maxIterations='10', multithreading='true', tolerance='1.0e-3')
 
     boxTranslation = "-20 -0.9 0"
-    boxPath = os.path.join(dirname, 'cube.obj')
-    rootNode.addObject('MeshOBJLoader', name='Loader-box', filename=boxPath, translation=boxTranslation)
+    rootNode.addObject('MeshOBJLoader', name='Loader-box', filename='cube.obj', translation=boxTranslation)
 
     rootNode.dt = dt
 
@@ -48,7 +47,6 @@ def createScene(rootNode, dt=0.01, m=1, alpha=1, g=1, L=100, mu=0):
     # rootNode/Box
     Box = rootNode.addChild('Box')
 
-    Box = Box
     Box.addObject('EulerImplicitSolver', name='EulerImplicitScheme')
     Box.addObject('SparseLDLSolver', name='linearSolver', template='CompressedRowSparseMatrixd', linearSystem='@system')
     Box.addObject('MatrixLinearSystem', template='CompressedRowSparseMatrixd', name='system')
@@ -58,7 +56,6 @@ def createScene(rootNode, dt=0.01, m=1, alpha=1, g=1, L=100, mu=0):
 
     # rootNode/Box/Collision
     Collision = Box.addChild('Collision')
-    Collision = Collision
     Collision.addObject('PointSetTopologyContainer', name='boxCollision', position=boxTranslation)
     Collision.addObject('PointSetTopologyModifier', name='Modifier')
     Collision.addObject('MechanicalObject', name='CollisionDOF', template='Vec3d')
@@ -67,7 +64,6 @@ def createScene(rootNode, dt=0.01, m=1, alpha=1, g=1, L=100, mu=0):
 
     # rootNode/Box/Visu
     Visu = Box.addChild('Visu')
-    Visu = Visu
     Visu.addObject('OglModel', name='VisualModel', color='0.7 0.7 0.7 0.8', position='@../../Loader-box.position', triangles='@../../Loader-box.triangles')
     Visu.addObject('RigidMapping', name='SurfaceMapping', input='@../BoxDOF', output='@VisualModel', globalToLocalCoords='true')
     
@@ -75,7 +71,6 @@ def createScene(rootNode, dt=0.01, m=1, alpha=1, g=1, L=100, mu=0):
 
     # rootNode/Floor
     Floor = rootNode.addChild('Floor')
-    Floor = Floor
     Floor.addObject('TriangleSetTopologyContainer', name='FloorTopology', position=f'-20 -15 -2  {L} -15 -2  {L} 15 -2  -20 15 -2', triangles='0 2 1  0 3 2')
     Floor.addObject('MechanicalObject', name='FloorDOF', template='Vec3d')
     Floor.addObject('TriangleCollisionModel', name='FloorCM', proximity='0.002', moving='0', simulated='0', color='0.3 0.3 0.3 0.1')
