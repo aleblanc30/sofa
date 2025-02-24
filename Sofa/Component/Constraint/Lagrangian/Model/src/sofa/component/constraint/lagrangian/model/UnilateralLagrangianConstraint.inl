@@ -55,7 +55,7 @@ void UnilateralLagrangianConstraint<DataTypes>::getConstraintResolution(const co
         Contact& c = this->contacts[i];
         if(c.parameters.hasTangentialComponent())
         {
-            UnilateralConstraintResolutionWithFriction* ucrwf = new UnilateralConstraintResolutionWithFriction(c.parameters.mu, c.paramters.drag, nullptr, &this->contactsStatus[i]);
+            UnilateralConstraintResolutionWithFriction* ucrwf = new UnilateralConstraintResolutionWithFriction(c.parameters.mu, c.parameters.drag, nullptr, &this->contactsStatus[i]);
             ucrwf->setTolerance(this->customTolerance);
             resTab[offset] = ucrwf;
 
